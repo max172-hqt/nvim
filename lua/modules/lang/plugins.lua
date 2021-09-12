@@ -9,5 +9,9 @@ lang['nvim-treesitter/nvim-treesitter'] = {
   config = conf("treesitter"),
 }
 
+lang['nvim-treesitter/nvim-treesitter-textobjects'] = {
+  after = 'nvim-treesitter'
+}
+
 return lang
 

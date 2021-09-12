@@ -11,7 +11,11 @@ local plug_map = {
     ["i|<CR>"]       = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]]):with_noremap():with_expr():with_nowait(),
     -- person keymap
     -- ["n|mf"]             = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
-    -- ["n|gb"]             = map_cr("BufferLinePick"):with_noremap():with_silent(),
+    ["n|gb"]             = map_cr("BufferLinePick"):with_noremap():with_silent(),
+    ["n|<Tab>"]          = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
+    ["n|<S-Tab>"]        = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
+    ["n|<leader>br"]     = map_cr("BufferLineMoveNext"):with_noremap():with_silent(),
+    ["n|<leader>bl"]     = map_cr("BufferLineMovePrev"):with_noremap():with_silent(),
     -- Packer
     ["n|<leader>pu"]     = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait();
     ["n|<leader>pi"]     = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait();
@@ -35,8 +39,8 @@ local plug_map = {
     ["n|gt"]             = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>cw"]     = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>ce"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
-    ["n|<Leader>ct"]     = map_args("Template"),
-    ["n|<Leader>tf"]     = map_cu('DashboardNewFile'):with_noremap():with_silent(),
+    -- ["n|<Leader>ct"]     = map_args("Template"),
+    -- ["n|<Leader>tf"]     = map_cu('DashboardNewFile'):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|,1"]             = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     ["n|<Leader>F"]      = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),
@@ -92,6 +96,8 @@ local plug_map = {
     -- ["x|I"]              = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
     -- ["x|gI"]             = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
     -- ["x|A"]              = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
+    -- Plugin vim_fugitive
+    ["n|<Leader>gs"]     = map_cr('G'):with_noremap():with_silent(),
 };
 
 bind.nvim_load_mapping(plug_map)
