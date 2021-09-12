@@ -8,5 +8,7 @@ editor['Raimondi/delimitMate'] = {
   config = conf("delimimate"),
 }
 
+editor['tpope/vim-surround'] = {}
+
 return editor
 
