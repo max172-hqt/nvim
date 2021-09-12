@@ -11,6 +11,9 @@ end
 -- completion['glepnir/lspsaga.nvim'] = {
 --   cmd = 'Lspsaga',
 -- }
+--
+
+completion['tpope/vim-commentary'] = {}
 
 completion['hrsh7th/nvim-compe'] = {
   event = 'InsertEnter',
