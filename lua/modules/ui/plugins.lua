@@ -11,11 +11,11 @@ ui['navarasu/onedark.nvim'] = {
 --   config = conf.dashboard
 -- }
 
--- ui['glepnir/galaxyline.nvim'] = {
---   branch = 'main',
---   config = conf.galaxyline,
---   requires = 'kyazdani42/nvim-web-devicons'
--- }
+ui['glepnir/galaxyline.nvim'] = {
+  branch = 'main',
+  config = conf("galaxyline"),
+  requires = 'kyazdani42/nvim-web-devicons'
+}
 
 -- ui['lukas-reineke/indent-blankline.nvim'] = {
 --   event = 'BufRead',
@@ -40,5 +40,13 @@ ui['lewis6991/gitsigns.nvim'] = {
   config = conf("gitsigns"),
   requires = {'nvim-lua/plenary.nvim',opt=true}
 }
+
+-- ui['ThePrimeagen/harpoon'] = {
+--   opt = true,
+--   event = { 'VimEnter' },
+--   setup = conf('harpoon').setup,
+--   config = conf('harpoon').config,
+--   requires = {'nvim-lua/plenary.nvim',opt=true}
+-- }
 
 return ui

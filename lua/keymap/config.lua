@@ -35,6 +35,14 @@ _G.s_tab_complete = function()
   end
 end
 
+_G.expand_snip = function()
+  if vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  else
+    return vim.fn['compe#confirm']()
+  end
+end
+
 _G.enhance_jk_move = function(key)
   if packer_plugins['accelerated-jk'] and not packer_plugins['accelerated-jk'].loaded then
     vim.cmd [[packadd accelerated-jk]]

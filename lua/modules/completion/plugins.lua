@@ -21,8 +21,10 @@ completion['hrsh7th/nvim-compe'] = {
 
 completion['hrsh7th/vim-vsnip'] = {
   event = 'InsertCharPre',
-  config = conf("vim_vsnip")
+  config = conf("vim_vsnip"),
 }
+
+completion['rafamadriz/friendly-snippets'] = {}
 
 -- completion['SirVer/ultisnips'] = {
 --   event = 'InsertEnter',

@@ -7,7 +7,7 @@ return function()
   allow_prefix_unmatch = false;
   source = {
     path = true;
-    buffer = true;
+    buffer = false;
     calc = true;
     vsnip = true;
     nvim_lsp = true;
