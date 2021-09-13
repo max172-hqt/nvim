@@ -3,15 +3,14 @@ local function conf(config_name)
   return require(string.format("modules.completion.%s", config_name))
 end
 
--- completion['neovim/nvim-lspconfig'] = {
---   event = 'BufReadPre',
---   config = conf.nvim_lsp,
--- }
+ completion['neovim/nvim-lspconfig'] = {
+   event = 'BufReadPre',
+   config = conf("nvim_lsp"),
+ }
 
--- completion['glepnir/lspsaga.nvim'] = {
---   cmd = 'Lspsaga',
--- }
---
+ completion['glepnir/lspsaga.nvim'] = {
+   cmd = 'Lspsaga',
+ }
 
 completion['tpope/vim-commentary'] = {}
 
