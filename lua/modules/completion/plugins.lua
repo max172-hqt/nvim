@@ -19,9 +19,17 @@ completion['hrsh7th/nvim-compe'] = {
   config = conf("nvim_compe"),
 }
 
--- completion['hrsh7th/vim-vsnip'] = {
---   event = 'InsertCharPre',
---   config = conf.vim_vsnip
+completion['hrsh7th/vim-vsnip'] = {
+  event = 'InsertCharPre',
+  config = conf("vim_vsnip")
+}
+
+-- completion['SirVer/ultisnips'] = {
+--   event = 'InsertEnter',
+-- }
+
+-- completion['honza/vim-snippets'] = {
+--   after = 'ultisnips'
 -- }
 
 completion['nvim-telescope/telescope.nvim'] = {
