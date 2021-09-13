@@ -70,6 +70,19 @@ return function()
   --   }
   -- }
 
+  lspconfig.efm.setup {
+    init_options = {documentFormatting = true},
+    filetypes = { 'lua' },
+    settings = {
+      rootMarkers = {".git/"},
+      languages = {
+        lua = {
+          {formatCommand = "lua-format -i", formatStdin = true}
+        }
+      }
+    }
+  }
+
   lspconfig.tsserver.setup {
     on_attach = function(client)
       client.resolved_capabilities.document_formatting = false

@@ -36,26 +36,28 @@ local plug_map = {
     ["n|ga"]             = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     ["v|ga"]             = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
     ["n|gD"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
-    ["n|gd"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
+    ["n|gi"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
+    ["n|gd"]             = map_cmd("<cmd>lua vim.lsp.buf.definition()<CR>"):with_noremap():with_silent(),
     ["n|gs"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
-    ["n|gr"]             = map_cr('Lspsaga rename'):with_noremap():with_silent(),
+    ["n|gr"]             = map_cr('<cmd>lua vim.lsp.buf.references()<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>rn"]     = map_cr('Lspsaga rename'):with_noremap():with_silent(),
     ["n|gh"]             = map_cr('Lspsaga lsp_finder'):with_noremap():with_silent(),
     ["n|gt"]             = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
+    ["n|<Leader>bf"]     = map_cmd("<cmd>lua vim.lsp.buf.formatting()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>cw"]     = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>ce"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
     -- ["n|<Leader>ct"]     = map_args("Template"),
     -- ["n|<Leader>tf"]     = map_cu('DashboardNewFile'):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|,1"]             = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
-    ["n|<Leader>F"]      = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),
     -- Plugin MarkdownPreview
     -- ["n|<Leader>om"]     = map_cu('MarkdownPreview'):with_noremap():with_silent(),
     -- Plugin DadbodUI
     -- ["n|<Leader>od"]     = map_cr('DBUIToggle'):with_noremap():with_silent(),
     -- Plugin Floaterm
-    ["n|<A-d>"]          = map_cu('Lspsaga open_floaterm'):with_noremap():with_silent(),
-    ["t|<A-d>"]          = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
-    ["n|<Leader>g"]      = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
+    -- ["n|<A-d>"]          = map_cu('Lspsaga open_floaterm'):with_noremap():with_silent(),
+    -- ["t|<A-d>"]          = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
+    -- ["n|<Leader>g"]      = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
     -- Far.vim
     -- ["n|<Leader>fz"]     = map_cr('Farf'):with_noremap():with_silent();
     -- ["v|<Leader>fz"]     = map_cr('Farf'):with_noremap():with_silent();

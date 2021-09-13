@@ -5,4 +5,8 @@ end
 
 tools['tpope/vim-fugitive'] = {}
 
+tools["akinsho/toggleterm.nvim"] = {
+  config = conf("toggleterm")
+}
+
 return tools

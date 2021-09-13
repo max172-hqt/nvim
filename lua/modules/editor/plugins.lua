@@ -15,6 +15,12 @@ editor['norcalli/nvim-colorizer.lua'] = {
   ft = { 'html','css','sass','vim','typescript','typescriptreact'},
   config = conf("nvim_colorizer")
 }
+
+-- editor['itchyny/vim-cursorword'] = {
+--   event = {'BufReadPre','BufNewFile'},
+--   config = conf("vim_cursorword")
+-- }
+
 editor['hrsh7th/vim-eft'] = {
   opt = true,
   config = function()
