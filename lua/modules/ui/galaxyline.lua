@@ -115,51 +115,54 @@ return function()
   gls.left[8] = {
     DiagnosticError = {
       provider = 'DiagnosticError',
-      icon = '  ',
+      separator = ' ',
+      icon = 'E:',
       highlight = {colors.red, colors.bg}
     }
   }
   gls.left[9] = {
     DiagnosticWarn = {
       provider = 'DiagnosticWarn',
-      icon = '  ',
+      separator = ' ',
+      icon = 'W:',
       highlight = {colors.yellow, colors.bg}
     }
   }
 
   gls.left[10] = {
-    DiagnosticHint = {
-      provider = 'DiagnosticHint',
-      icon = '  ',
-      highlight = {colors.cyan, colors.bg}
-    }
-  }
-
-  gls.left[11] = {
     DiagnosticInfo = {
       provider = 'DiagnosticInfo',
-      icon = '  ',
+      separator = ' ',
+      icon = 'I:',
       highlight = {colors.blue, colors.bg}
     }
   }
 
-  gls.right[1] = {
-    ShowLspClient = {
-      provider = 'GetLspClient',
-      condition = function()
-        local tbl = {
-          ['dashboard'] = true,
-          [''] = true
-        }
-        if tbl[vim.bo.filetype] then
-          return false
-        end
-        return true
-      end,
-      icon = '',
-      highlight = {colors.yellow,colors.bg,'bold'}
+  gls.left[11] = {
+    DiagnosticHint = {
+      provider = 'DiagnosticHint',
+      icon = 'H:',
+      highlight = {colors.cyan, colors.bg}
     }
   }
+
+  -- gls.right[1] = {
+  --   ShowLspClient = {
+  --     provider = 'GetLspClient',
+  --     condition = function()
+  --       local tbl = {
+  --         ['dashboard'] = true,
+  --         [''] = true
+  --       }
+  --       if tbl[vim.bo.filetype] then
+  --         return false
+  --       end
+  --       return true
+  --     end,
+  --     icon = '',
+  --     highlight = {colors.yellow,colors.bg,'bold'}
+  --   }
+  -- }
 
   -- gls.right[1] = {
   --   FileEncode = {

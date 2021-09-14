@@ -3,21 +3,7 @@ local function conf(config_name)
   return require(string.format("modules.completion.%s", config_name))
 end
 
- completion['neovim/nvim-lspconfig'] = {
-   event = 'BufReadPre',
-   config = conf("nvim_lsp"),
- }
-
- completion['glepnir/lspsaga.nvim'] = {
-   cmd = 'Lspsaga',
- }
-
 completion['tpope/vim-commentary'] = {}
-
-completion['hrsh7th/nvim-compe'] = {
-  event = 'InsertEnter',
-  config = conf("nvim_compe"),
-}
 
 completion['hrsh7th/vim-vsnip'] = {
   event = 'InsertCharPre',
@@ -26,13 +12,10 @@ completion['hrsh7th/vim-vsnip'] = {
 
 completion['rafamadriz/friendly-snippets'] = {}
 
--- completion['SirVer/ultisnips'] = {
---   event = 'InsertEnter',
--- }
-
--- completion['honza/vim-snippets'] = {
---   after = 'ultisnips'
--- }
+completion['neoclide/coc.nvim'] = {
+  branch = 'release',
+  run = 'yarn install --frozen-lockfile'
+}
 
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',
