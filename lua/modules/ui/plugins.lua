@@ -24,9 +24,9 @@ ui['glepnir/galaxyline.nvim'] = {
 -- }
 
 
-ui['akinsho/nvim-bufferline.lua'] = {
-  config = conf("nvim_bufferline"),
-  requires = 'kyazdani42/nvim-web-devicons'
+ui['romgrk/barbar.nvim'] = {
+  requires = {'kyazdani42/nvim-web-devicons'},
+  config = conf("barbar"),
 }
 
 ui['kyazdani42/nvim-tree.lua'] = {
