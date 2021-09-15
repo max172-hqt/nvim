@@ -17,12 +17,9 @@ ui['glepnir/galaxyline.nvim'] = {
   requires = 'kyazdani42/nvim-web-devicons'
 }
 
--- ui['lukas-reineke/indent-blankline.nvim'] = {
---   event = 'BufRead',
---   branch = 'lua',
---   config = conf.indent_blakline
--- }
-
+ui['lukas-reineke/indent-blankline.nvim'] = {
+  config = conf("indent_blankline")
+}
 
 ui['romgrk/barbar.nvim'] = {
   requires = {'kyazdani42/nvim-web-devicons'},
@@ -40,13 +37,5 @@ ui['lewis6991/gitsigns.nvim'] = {
   config = conf("gitsigns"),
   requires = {'nvim-lua/plenary.nvim',opt=true}
 }
-
--- ui['ThePrimeagen/harpoon'] = {
---   opt = true,
---   event = { 'VimEnter' },
---   setup = conf('harpoon').setup,
---   config = conf('harpoon').config,
---   requires = {'nvim-lua/plenary.nvim',opt=true}
--- }
 
 return ui

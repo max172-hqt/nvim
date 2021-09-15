@@ -16,16 +16,16 @@ editor['norcalli/nvim-colorizer.lua'] = {
   config = conf("nvim_colorizer")
 }
 
--- editor['itchyny/vim-cursorword'] = {
---   event = {'BufReadPre','BufNewFile'},
---   config = conf("vim_cursorword")
--- }
-
 editor['hrsh7th/vim-eft'] = {
   opt = true,
   config = function()
     vim.g.eft_ignorecase = true
   end
+}
+
+editor["ggandor/lightspeed.nvim"]= {
+  event = "BufReadPost",
+  config = conf("lightspeed")
 }
 
 return editor
