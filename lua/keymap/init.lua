@@ -6,13 +6,13 @@ local map_args = bind.map_args
 require('keymap.config')
 
 local plug_map = {
-    ["i|<TAB>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
-    ["i|<C-j>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
-    ["i|<S-TAB>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
-    ["i|<C-k>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
+    -- ["i|<TAB>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
+    -- ["i|<C-j>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
+    -- ["i|<S-TAB>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
+    -- ["i|<C-k>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
     ["i|<C-l>"]      = map_cmd('v:lua.expand_snip()'):with_silent():with_expr(),
     ["s|<C-l>"]      = map_cmd('v:lua.expand_snip()'):with_silent():with_expr(),
-    ["i|<CR>"]       = map_cmd('v:lua.on_enter()'):with_noremap():with_expr():with_nowait(),
+    -- ["i|<CR>"]       = map_cmd('v:lua.on_enter()'):with_noremap():with_expr():with_nowait(),
     -- person keymap
     -- ["n|mf"]             = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
     ["n|<Tab>"]          = map_cr("BufferNext"):with_noremap():with_silent(),
@@ -44,17 +44,17 @@ local plug_map = {
     -- ["n|<C-f>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>"):with_silent():with_noremap():with_nowait(),
     -- ["n|<C-b>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>"):with_silent():with_noremap():with_nowait(),
 
-    ["n|[e"]             = map_cmd('<plug>(coc-diagnostic-prev)'):with_silent(),
-    ["n|]e"]             = map_cmd('<plug>(coc-diagnostic-next)'):with_silent(),
+    -- ["n|[e"]             = map_cmd('<plug>(coc-diagnostic-prev)'):with_silent(),
+    -- ["n|]e"]             = map_cmd('<plug>(coc-diagnostic-next)'):with_silent(),
     -- ["n|K"]              = map_cr('call <SID>show_documentation()'):with_noremap():with_silent(),
-    ["n|gi"]             = map_cmd("<plug>(coc-implementation)"):with_silent(),
-    ["n|gd"]             = map_cmd('<plug>(coc-definition)'):with_silent(),
-    ["n|<Leader>rn"]     = map_cmd('<plug>(coc-rename)'):with_silent(),
+    -- ["n|gi"]             = map_cmd("<plug>(coc-implementation)"):with_silent(),
+    -- ["n|gd"]             = map_cmd('<plug>(coc-definition)'):with_silent(),
+    -- ["n|<Leader>rn"]     = map_cmd('<plug>(coc-rename)'):with_silent(),
 
-    ["n|ga"]             = map_cmd("<Plug>(coc-codeaction-selected)"):with_silent(),
-    ["v|ga"]             = map_cmd("<Plug>(coc-codeaction-selected)"):with_silent(),
+    -- ["n|ga"]             = map_cmd("<Plug>(coc-codeaction-selected)"):with_silent(),
+    -- ["v|ga"]             = map_cmd("<Plug>(coc-codeaction-selected)"):with_silent(),
 
-    ["n|<leader>ce"]     = map_cr("<C-u>CocList diagnostics"):with_noremap():with_silent():with_nowait(),
+    -- ["n|<leader>ce"]     = map_cr("<C-u>CocList diagnostics"):with_noremap():with_silent():with_nowait(),
 
     -- ["n|gD"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
     -- ["n|gs"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),

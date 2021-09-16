@@ -5,17 +5,37 @@ end
 
 completion['tpope/vim-commentary'] = {}
 
+completion['kabouzeid/nvim-lspinstall'] = {}
+
+completion['neovim/nvim-lspconfig'] = {
+  event = 'BufReadPre',
+  config = conf("nvim_lsp"),
+}
+
+completion['glepnir/lspsaga.nvim'] = {
+  cmd = 'Lspsaga',
+}
+
+completion['onsails/lspkind-nvim'] = {
+  config = conf("lspkind")
+}
+
+completion["hrsh7th/nvim-cmp"] = {
+  config = conf("nvim-cmp"),
+  requires = {
+    "hrsh7th/vim-vsnip",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/cmp-nvim-lsp",
+  }
+}
+
 completion['hrsh7th/vim-vsnip'] = {
   event = 'InsertCharPre',
   config = conf("vim_vsnip"),
 }
 
 completion['rafamadriz/friendly-snippets'] = {}
-
-completion['neoclide/coc.nvim'] = {
-  branch = 'release',
-  run = 'yarn install --frozen-lockfile'
-}
 
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',
@@ -27,16 +47,6 @@ completion['nvim-telescope/telescope.nvim'] = {
   }
 }
 
--- completion['glepnir/smartinput.nvim'] = {
---   ft = 'go',
---   config = conf.smart_input
--- }
-
--- completion['mattn/vim-sonictemplate'] = {
---   cmd = 'Template',
---   ft = {'go','typescript','lua','javascript','vim','rust','markdown'},
---   config = conf.vim_sonictemplate,
--- }
 
 completion['mattn/emmet-vim'] = {
   event = 'InsertEnter',
