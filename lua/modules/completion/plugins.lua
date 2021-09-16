@@ -14,6 +14,7 @@ completion['neovim/nvim-lspconfig'] = {
 
 completion['glepnir/lspsaga.nvim'] = {
   cmd = 'Lspsaga',
+  config = conf("lspsaga")
 }
 
 completion['onsails/lspkind-nvim'] = {

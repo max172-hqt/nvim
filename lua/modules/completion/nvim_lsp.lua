@@ -24,10 +24,18 @@ return function()
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    -- lspsaga
+    -- buf_set_keymap('n', '<Leader>f', '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>', opts)
+    -- buf_set_keymap('n', 'K', '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', opts)
+    -- buf_set_keymap('n', ',s', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
+    -- buf_set_keymap('n', ',rn', '<cmd>lua require("lspsaga.rename").rename()<CR>', opts)
+    -- buf_set_keymap('n', '<Leader>ca', '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', opts)
+    -- buf_set_keymap('v', '<Leader>ca', ':<C-u>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
+    -- buf_set_keymap('n', '[d', '<cmd>lua require("lspsaga.diagnostic").lsp_jump_diagnostic_prev()<CR>', opts)
+    -- buf_set_keymap('n', ']d', '<cmd>lua require("lspsaga.diagnostic").lsp_jump_diagnostic_next()<CR>', opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -47,6 +55,17 @@ return function()
       ]], false)
     end
   end
+
+  -- Diagnostics signs and highlights
+--   Error:   ✘
+--   Warning:  ⚠ 
+--   Hint:  
+--   Information:   ⁱ
+local signs = { Error = '✘', Warning = '', Hint = '', Information = 'ⁱ'}
+for type, icon in pairs(signs) do
+	local hl = 'LspDiagnosticsSign' .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
   -- Configure lua language server for neovim development
   local lua_settings = {
@@ -70,16 +89,34 @@ return function()
     }
   }
 
-  -- config that activates keymaps and enables snippet support
-  local function make_config()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    return {
-      -- enable snippet support
-      capabilities = capabilities,
-      -- map buffer local keybindings when the language server attaches
-      on_attach = on_attach,
-    }
+    -- Combine base config for each server and merge user-defined settings.
+  local function make_config(server_name)
+    -- Setup base config for each server.
+    local c = {}
+    c.on_attach = on_attach
+    c.capabilities = vim.lsp.protocol.make_client_capabilities()
+    c.capabilities = require('cmp_nvim_lsp').update_capabilities(c.capabilities)
+    -- c.capabilities.textDocument.completion.completionItem.snippetSupport = true
+    -- c.capabilities.textDocument.completion.completionItem.resolveSupport = {
+    -- 	properties = {
+    -- 		'documentation',
+    -- 		'detail',
+    -- 		'additionalTextEdits',
+    -- 	}
+    -- }
+
+    -- Merge user-defined lsp settings.
+    -- These can be overridden locally by lua/lsp-local/<server_name>.lua
+    local exists, module = pcall(require, 'modules.local.completion.'..server_name)
+    if not exists then
+      exists, module = pcall(require, 'modules.completion.'..server_name)
+    end
+    if exists then
+      local user_config = module.config(c)
+      for k, v in pairs(user_config) do c[k] = v end
+    end
+
+    return c
   end
 
   -- lsp-install
@@ -89,11 +126,7 @@ return function()
     local servers = require'lspinstall'.installed_servers()
 
     for _, server in pairs(servers) do
-      local config = make_config()
-      if server == "diagnosticls" then
-        config = vim.tbl_extend("force", config, require "modules.completion.diagnosticls")
-      end
-      -- if server == "efm" then config = vim.tbl_extend("force", config, require "modules.completion.efm") end
+      local config = make_config(server)
       require'lspconfig'[server].setup(config)
     end
   end
