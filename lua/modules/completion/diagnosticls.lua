@@ -5,7 +5,6 @@
 local config = {
 	filetypes = {
 		'dockerfile',
-		'go',
 		'javascript',
 		'javascriptreact',
 		'typescript',
@@ -78,65 +77,6 @@ local config = {
 					security = 'severity',
 				},
 				securities = { [2] = 'error', [1] = 'warning' },
-			},
-			fish = {
-				command = 'fish',
-				args = { '-n', '%file' },
-				isStdout = false,
-				isStderr = true,
-				sourceName = 'fish',
-				formatLines = 1,
-				formatPattern = {
-					'^.*\\(line (\\d+)\\): (.*)$',
-					{ line = 1, message = 2 },
-				},
-				securities = { undefined = 'warning' },
-			},
-			['golangci-lint'] = {
-				command = 'golangci-lint',
-				rootPatterns = { '.git', 'go.mod' },
-				debounce = 100,
-				args = { 'run', '--out-format', 'json' },
-				sourceName = 'golangci-lint',
-				parseJson = {
-					sourceName = 'Pos.Filename',
-					sourceNameFilter = true,
-					errorsRoot = 'Issues',
-					line = 'Pos.Line',
-					column = 'Pos.Column',
-					message = '${Text} [${FromLinter}]',
-				},
-				securities = { undefined = 'info' },
-			},
-			revive = {
-				command = 'revive',
-				rootPatterns = { '.git', 'go.mod' },
-				debounce = 100,
-				args = { '%file' },
-				sourceName = 'revive',
-				formatPattern = {
-					'^[^:]+:(\\d+):(\\d+):\\s+(.*)$',
-					{ line = 1, column = 2, message = { 3 } },
-				},
-				securities = { undefined = 'info' },
-			},
-			hadolint = {
-				command = 'hadolint',
-				sourceName = 'hadolint',
-				args = { '-f', 'json', '-' },
-				rootPatterns = { '.hadolint.yaml' },
-				parseJson = {
-					line = 'line',
-					column = 'column',
-					security = 'level',
-					message = '${message} [${code}]',
-				},
-				securities = {
-					error = 'error',
-					warning = 'warning',
-					info = 'info',
-					style = 'hint',
-				},
 			},
 			languagetool = {
 				command = 'languagetool',

@@ -6,19 +6,12 @@ local map_args = bind.map_args
 require('keymap.config')
 
 local plug_map = {
-    -- ["i|<TAB>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
-    -- ["i|<C-j>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
-    -- ["i|<S-TAB>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
-    -- ["i|<C-k>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
     ["i|<C-l>"]      = map_cmd('v:lua.expand_snip()'):with_silent():with_expr(),
     ["s|<C-l>"]      = map_cmd('v:lua.expand_snip()'):with_silent():with_expr(),
-    -- ["i|<CR>"]       = map_cmd('v:lua.on_enter()'):with_noremap():with_expr():with_nowait(),
-    -- person keymap
-    -- ["n|mf"]             = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
     ["n|<Tab>"]          = map_cr("BufferNext"):with_noremap():with_silent(),
     ["n|<S-Tab>"]        = map_cr("BufferPrevious"):with_noremap():with_silent(),
-    ["n|<leader>br"]     = map_cr("BufferMoveNext"):with_noremap():with_silent(),
-    ["n|<leader>bl"]     = map_cr("BufferMovePrev"):with_noremap():with_silent(),
+    ["n|<leader>bk"]     = map_cr("BufferMoveNext"):with_noremap():with_silent(),
+    ["n|<leader>bj"]     = map_cr("BufferMovePrev"):with_noremap():with_silent(),
     ["n|<leader>1"]      = map_cr("BufferGoto 1"):with_noremap():with_silent(),
     ["n|<leader>2"]      = map_cr("BufferGoto 2"):with_noremap():with_silent(),
     ["n|<leader>3"]      = map_cr("BufferGoto 3"):with_noremap():with_silent(),
@@ -29,9 +22,12 @@ local plug_map = {
     ["n|<leader>8"]      = map_cr("BufferGoto 8"):with_noremap():with_silent(),
     ["n|<leader>9"]      = map_cr("BufferGoto 9"):with_noremap():with_silent(),
     ["n|<leader>0"]      = map_cr("BufferLast"):with_noremap():with_silent(),
-    ["n|<C-p>"]          = map_cr("BufferPick"):with_noremap():with_silent(),
+    -- ["n|<C-p>"]          = map_cr("BufferPick"):with_noremap():with_silent(),
     ["n|<S-q>"]          = map_cr("BufferClose"):with_noremap():with_silent(),
     ["n|<leader>bd"]     = map_cr("BufferClose"):with_noremap():with_silent(),
+    ["n|<leader>bo"]     = map_cr("BufferCloseAllButCurrent"):with_noremap():with_silent(),
+    ["n|<leader>bh"]     = map_cr("BufferCloseBuffersLeft"):with_noremap():with_silent(),
+    ["n|<leader>bl"]     = map_cr("BufferCloseBuffersRight"):with_noremap():with_silent(),
     -- Packer
     ["n|<leader>pu"]     = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait();
     ["n|<leader>pi"]     = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait();
@@ -47,14 +43,14 @@ local plug_map = {
     ["n|K"]              = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
     ["n|ca"]             = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     ["v|ga"]             = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|gd"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
-    ["n|gD"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
+    ["n|gD"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+    -- ["n|gD"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
     ["n|gs"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
     ["n|<leader>rn"]     = map_cr('Lspsaga rename'):with_noremap():with_silent(),
     ["n|gh"]             = map_cr('Lspsaga lsp_finder'):with_noremap():with_silent(),
     ["n|gt"]             = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>cw"]     = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
-    ["n|<Leader>ce"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
+    ["n|<Leader>e"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
 
     -- Plugin nvim-tree
     ["n|,1"]             = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
@@ -86,6 +82,8 @@ local plug_map = {
     ["o|F"]              = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
     -- Plugin vim_fugitive
     ["n|<Leader>gs"]     = map_cr('G'):with_noremap():with_silent(),
+
+    ["n|<Leader>wc"]     = map_cr('clo'):with_noremap():with_silent(),
 };
 
 bind.nvim_load_mapping(plug_map)

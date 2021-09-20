@@ -49,7 +49,7 @@ local leader_map = function()
 end
 
 local load_core =function()
-  vim.g.onedark_style = 'darker'
+  -- vim.g.onedark_style = 'darker'
   local pack = require('core.pack')
   createdir()
   disable_distribution_plugins()

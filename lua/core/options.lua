@@ -84,7 +84,7 @@ local function load_options()
     laststatus     = 2;
     display        = "lastline";
     showbreak      = "↳  ";
-    listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↴";
+    listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
   }
@@ -130,6 +130,14 @@ local function load_options()
     vim.o[name] = value
   end
   bind_option(bw_local)
+
+  vim.g.CtrlSpaceDefaultMappingKey = "<C-space> "
+  vim.g.CtrlSpaceLoadLastWorkspaceOnStart = 1
+  vim.g.CtrlSpaceSaveWorkspaceOnSwitch = 1
+  vim.g.CtrlSpaceSaveWorkspaceOnExit = 1
+  vim.g.neovide_cursor_animation_length = 0
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h15"
+  
 end
 
 load_options()

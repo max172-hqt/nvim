@@ -1,103 +1,55 @@
-local prettier = {
-  formatCommand = "./node_modules/.bin/prettier --stdin-filepath=${INPUT}",
-  formatStdin = true
+local eslint = require('modules.completion.efm.eslint')
+local prettier = require('modules.completion.efm.prettier')
+
+local efm_config = os.getenv('HOME') .. '/.config/nvim/lua/modules/completion/efm/config.yaml'
+local efm_log_dir = '~/.tmp/'
+local efm_root_markers = { 'package.json', '.git/', '.zshrc' }
+local efm_languages = {
+  yaml               = { prettier },
+  json               = { prettier },
+  markdown           = { prettier },
+  javascript         = { eslint, prettier },
+  javascriptreact    = { eslint, prettier },
+  ["javascript.jsx"] = { eslint, prettier },
+  typescript         = { eslint, prettier },
+  typescriptreact    = { eslint, prettier },
+  ["typescript.tsx"] = { eslint, prettier },
+  css                = { prettier },
+  scss               = { prettier },
+  sass               = { prettier },
+  less               = { prettier },
+  graphql            = { prettier },
+  vue                = { prettier },
+  html               = { prettier }
 }
 
-local eslint = {
-  lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
-  lintIgnoreExitCode = true,
-  lintStdin = true,
-  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %rror %m" }
-}
-
-local shellcheck = {
-  lintCommand = "shellcheck -f gcc -x -",
-  lintStdin = true,
-  lintFormats = {
-    "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m"
+local config = {
+  cmd = {
+    "efm-langserver",
+    "-c",
+    efm_config,
+    "-logfile",
+    efm_log_dir .. "efm.log"
+  },
+  filetypes = {
+    'javascript',
+    'javascriptreact',
+    'javascript.jsx',
+    'typescript',
+    'typescriptreact',
+    'typescript.tsx'
+  },
+  root_dir = lsp_config.util.root_pattern(unpack(efm_root_markers)),
+  init_options = {
+    documentFormatting = true,
+    codeAction = true
+  },
+  settings = {
+    rootMarkers = efm_root_markers,
+    languages   = efm_languages,
   }
 }
 
-local shfmt = {
-  -- brew install shfmt
-  formatCommand = "shfmt -ci -s -bn",
-  formatStdin = true
-}
-
-local luaformat = {
-  -- luarocks install --server=https://luarocks.org/dev luaformatter
-  formatCommand = "lua-format -i ${--tab-width:tabSize} ${--indent-width:tabSize} ${--continuation-indent-width:tabSize} --spaces-inside-table-braces --single-quote-to-double-quote --chop-down-parameter --chop-down-table --chop-down-kv-table --extra-sep-at-table-end --column-limit=100",
-  formatStdin = true
-}
-
-local vint = {
-  -- brew install vint --HEAD
-  lintCommand = "vint -f '{file_path}:{line_number}:{column_number}: {severity}: {description} (see: {reference})' --enable-neovim -",
-  -- stdin needs vint >= 0.4
-  lintStdin = true,
-  lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m" }
-}
-
-local checkmake = { lintCommand = "checkmake", lintStdin = true }
-
--- brew install yamllint
-local yamllint = { lintCommand = "yamllint -f parsable -", lintStdin = true }
-
-local flake8 = {
-  lintCommand = "flake8 --stdin-display-name ${INPUT} -",
-  lintStdin = true,
-  lintFormats = { "%f:%l:%c: %m" }
-}
-
-local phpstan = {
-  lintCommand = "./vendor/bin/phpstan analyze --error-format raw --no-progress"
-}
-
-local bladeFormatter = {
-  formatCommand = "blade-formatter --stdin ${--indent-size:tabSize}",
-  formatStdin = true
-}
-
-local rustywind = {
-  -- yarn global add rustywind
-  formatCommand = "rustywind --stdin",
-  formatStdin = true
-}
-
-local fixjson = {
-  -- yarn global add fixjson
-  formatCommand = "fixjson",
-  formatStdin = true
-}
-
-local languages = {
-  lua = { luaformat },
-  sh = { shellcheck, shfmt },
-  javascript = { prettier, eslint },
-  typescript = { prettier, eslint },
-  html = { prettier },
-  css = { prettier },
-  vim = { vint },
-  php = { phpstan },
-  python = { flake8 },
-  blade = { bladeFormatter },
-  yaml = { yamllint, prettier },
-  make = { checkmake },
-  json = { fixjson }
-}
-
-local tailwind_fts = require"lspinstall/servers".tailwindcss.default_config
-                         .filetypes
-for _, filetype in ipairs(tailwind_fts) do
-  if languages[filetype] then
-    table.insert(languages[filetype], 1, rustywind)
-  else
-    languages[filetype] = { rustywind }
-  end
-end
-
 return {
-  filetypes = vim.tbl_keys(languages),
-  init_options = { documentFormatting = true },
-  settings = { rootMarkers = { ".git/" }, languages = languages }
+	config = function(_) return config end,
 }

@@ -5,6 +5,8 @@ end
 
 tools['tpope/vim-fugitive'] = {}
 
+tools['vim-ctrlspace/vim-ctrlspace'] = {}
+
 tools["akinsho/toggleterm.nvim"] = {
   config = conf("toggleterm")
 }

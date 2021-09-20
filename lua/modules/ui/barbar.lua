@@ -19,7 +19,7 @@ return function()
     -- Enable/disable icons
     -- if set to 'numbers', will show buffer index in the tabline
     -- if set to 'both', will show buffer index and icons in the tabline
-    icons = 'numbers',
+    icons = 'both',
     -- If set, the icon color will follow its corresponding buffer
     -- highlight group. By default, the Buffer*Icon group is linked to the
     -- Buffer* group (see Highlighting below). Otherwise, it will take its

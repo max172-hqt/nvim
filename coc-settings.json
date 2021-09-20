@@ -1,5 +1,0 @@
-{
-  "eslint.nodeEnv": "development",
-  "eslint.format.enable": true,
-  "eslint.autoFixOnSave": true,
-}
