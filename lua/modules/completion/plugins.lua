@@ -48,11 +48,17 @@ completion['nvim-telescope/telescope.nvim'] = {
   }
 }
 
-
 completion['mattn/emmet-vim'] = {
   event = 'InsertEnter',
   ft = {'html','css','javascript','javascriptreact','vue','typescript','typescriptreact'},
   config = conf("emmet"),
 }
+
+completion['folke/trouble.nvim'] = {
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = conf("trouble")
+}
+
+completion['folke/lsp-colors.nvim'] = {}
 
 return completion

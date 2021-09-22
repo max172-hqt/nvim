@@ -84,6 +84,9 @@ local plug_map = {
     ["n|<Leader>gs"]     = map_cr('G'):with_noremap():with_silent(),
 
     ["n|<Leader>wc"]     = map_cr('clo'):with_noremap():with_silent(),
+    ["n|<Leader>xx"]     = map_cmd("<cmd>Trouble<CR>"):with_silent():with_noremap(),
+    ["n|<Leader>xq"]     = map_cmd("<cmd>Trouble quickfix<CR>"):with_silent():with_noremap(),
+    ["n|gR"]             = map_cmd("<cmd>Trouble lsp_references<CR>"):with_silent():with_noremap(),
 };
 
 bind.nvim_load_mapping(plug_map)

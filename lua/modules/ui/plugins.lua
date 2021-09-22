@@ -3,17 +3,17 @@ local function conf(config_name)
   return require(string.format("modules.ui.%s", config_name))
 end
 
--- ui['navarasu/onedark.nvim'] = {
---   config = [[vim.cmd('colorscheme onedark')]]
--- }
+ui['navarasu/onedark.nvim'] = {
+  config = [[vim.cmd('colorscheme onedark')]]
+}
 
 -- ui['romgrk/doom-one.vim'] = {
 --   config = [[vim.cmd('colorscheme doom-one')]]
 -- }
 
-ui['glepnir/zephyr-nvim'] = {
-  config = [[vim.cmd('colorscheme zephyr')]]
-}
+-- ui['glepnir/zephyr-nvim'] = {
+--   config = [[vim.cmd('colorscheme zephyr')]]
+-- }
 
 -- ui['glepnir/dashboard-nvim'] = {
 --   config = conf.dashboard

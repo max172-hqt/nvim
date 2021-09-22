@@ -80,6 +80,7 @@ return function()
   -- }
   gls.left[4] = {
     FileIcon = {
+      separator = ' ',
       provider = 'FileIcon',
       condition = condition.buffer_not_empty,
       highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg}
