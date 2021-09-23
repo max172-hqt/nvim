@@ -3,17 +3,21 @@ local function conf(config_name)
   return require(string.format("modules.ui.%s", config_name))
 end
 
-ui['navarasu/onedark.nvim'] = {
-  config = [[vim.cmd('colorscheme onedark')]]
-}
+-- ui['navarasu/onedark.nvim'] = {
+--   config = [[vim.cmd('colorscheme onedark')]]
+-- }
+
+-- ui['ajmwagar/vim-deus'] = {
+--   config = [[vim.cmd('colorscheme deus')]]
+-- }
 
 -- ui['romgrk/doom-one.vim'] = {
 --   config = [[vim.cmd('colorscheme doom-one')]]
 -- }
 
--- ui['glepnir/zephyr-nvim'] = {
---   config = [[vim.cmd('colorscheme zephyr')]]
--- }
+ui['glepnir/zephyr-nvim'] = {
+  config = [[vim.cmd('colorscheme zephyr')]]
+}
 
 -- ui['glepnir/dashboard-nvim'] = {
 --   config = conf.dashboard
@@ -24,6 +28,8 @@ ui['glepnir/galaxyline.nvim'] = {
   config = conf("galaxyline"),
   requires = 'kyazdani42/nvim-web-devicons'
 }
+
+-- ui['Avimitin/nerd-galaxyline'] = {}
 
 ui['lukas-reineke/indent-blankline.nvim'] = {
   config = conf("indent_blankline")
