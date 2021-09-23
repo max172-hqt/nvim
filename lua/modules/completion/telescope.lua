@@ -17,7 +17,7 @@ return function()
         '--smart-case'
       },
       prompt_prefix = "  ",
-      selection_caret = "➤ ",
+      selection_caret = " ➤  ",
       entry_prefix = "  ",
       initial_mode = "insert",
       selection_strategy = "reset",
@@ -26,7 +26,7 @@ return function()
       layout_config = {
         prompt_position = "bottom",
         preview_cutoff = 120,
-        width = 0.75,
+        width = 0.9,
         horizontal = {
           mirror = false,
         },

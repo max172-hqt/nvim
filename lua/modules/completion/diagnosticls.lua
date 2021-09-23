@@ -171,8 +171,8 @@ local config = {
 			},
 		},
 		formatFiletypes = {
-			javascript = 'eslint',
-			javascriptreact = 'eslint',
+			javascript = { 'eslint', 'prettierEslint' },
+			javascriptreact = { 'eslint', 'prettierEslint' },
 			json = 'prettier',
 			typescript = 'eslint',
 			typescriptreact = 'eslint',
