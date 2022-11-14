@@ -74,13 +74,9 @@ let g:mapleader = " "
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 Plug 'preservim/nerdtree'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 Plug 'ton/vim-bufsurf'
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -374,3 +370,6 @@ autocmd FileType ruby setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.ejs set filetype=html
+let g:python3_host_prog='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3'
+
+
