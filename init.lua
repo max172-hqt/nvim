@@ -1,4 +1,5 @@
 -- Install packer
+-- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -49,6 +50,8 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use 'rktjmp/lush.nvim'
+  use 'metalelf0/jellybeans-nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -62,6 +65,7 @@ require('packer').startup(function(use)
 
   -- Custom Plugins
   use { 'ton/vim-bufsurf' }
+  use { 'Shougo/defx.nvim' }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -125,7 +129,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme jellybeans-nvim]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -147,21 +151,21 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
--- local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   callback = function()
---     vim.highlight.on_yank()
---   end,
---   group = highlight_group,
---   pattern = '*',
--- })
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
+    theme = 'auto',
     component_separators = '|',
     section_separators = '',
   },
@@ -173,7 +177,7 @@ require('Comment').setup()
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
-  char = '┊',
+  char = '|',
   show_trailing_blankline_indent = false,
 }
 
@@ -466,6 +470,31 @@ cmp.setup {
     { name = 'ultisnips' },
   },
 }
+
+-- defx.vim
+vim.api.nvim_set_keymap('n', 'sf', [[:<C-u>Defx -listed -resume
+  -columns=indent:mark:icon:icons:filename:git:size
+  -buffer-name=tab`tabpagenr()`
+  `expand('%:p:h')` -search=`expand('%:p')`<CR>]]
+, { silent = true, noremap = true })
+
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = "defx",
+  callback = function ()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', 'defx#do_action(\'open\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'l', 'defx#do_action(\'open\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'c', 'defx#do_action(\'copy\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'm', 'defx#do_action(\'move\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'p', 'defx#do_action(\'paste\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'r', 'defx#do_action(\'rename\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'N', 'defx#do_action(\'new_file\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'd', 'defx#do_action(\'remove\')', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'h', 'defx#do_action(\'cd\', [\'..\'])', { noremap = true, silent = true, expr = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'q', 'defx#do_action(\'quit\')', { noremap = true, silent = true, expr = true })
+  end,
+})
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
