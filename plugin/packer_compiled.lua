@@ -89,10 +89,20 @@ _G.packer_plugins = {
     path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-ultisnips"] = {
+    loaded = true,
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+  },
   cmp_luasnip = {
     loaded = true,
     path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["defx.nvim"] = {
+    loaded = true,
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/defx.nvim",
+    url = "https://github.com/Shougo/defx.nvim"
   },
   ["fidget.nvim"] = {
     loaded = true,
@@ -109,10 +119,15 @@ _G.packer_plugins = {
     path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
-  ["lualine.nvim"] = {
+  ["jellybeans-nvim"] = {
     loaded = true,
-    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/lualine.nvim",
-    url = "https://github.com/nvim-lualine/lualine.nvim"
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/jellybeans-nvim",
+    url = "https://github.com/metalelf0/jellybeans-nvim"
+  },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -178,6 +193,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ultisnips = {
+    loaded = true,
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/ultisnips",
+    url = "https://github.com/SirVer/ultisnips"
+  },
+  ["vim-bufsurf"] = {
+    loaded = true,
+    path = "/Users/huytran172/.local/share/nvim/site/pack/packer/start/vim-bufsurf",
+    url = "https://github.com/ton/vim-bufsurf"
   },
   ["vim-fugitive"] = {
     loaded = true,
