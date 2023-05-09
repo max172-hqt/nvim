@@ -234,6 +234,18 @@ snippet af auto function
 snippet cbeg cf testcase
 	#include <iostream>
 	#include <vector>
+	#include <algorithm>
+	#include <sstream>
+	#include <string>
+	#include <cctype>
+	#include <stack>
+	#include <queue>
+	#include <unordered_map>
+	#include <map>
+	#include <set>
+	#include <unordered_set>
+	#include <functional>
+	#include <cmath>
 
 	using namespace std;
 
@@ -257,6 +269,18 @@ snippet cbeg cf testcase
 snippet mbeg cf minimal
 	#include <iostream>
 	#include <vector>
+	#include <algorithm>
+	#include <sstream>
+	#include <string>
+	#include <cctype>
+	#include <stack>
+	#include <queue>
+	#include <unordered_map>
+	#include <map>
+	#include <set>
+	#include <unordered_set>
+	#include <functional>
+	#include <cmath>
 
 	using namespace std;
 
@@ -266,5 +290,22 @@ snippet mbeg cf minimal
 		ios_base::sync_with_stdio(false);
 		cin.tie(0);
 		${0}
+		return 0;
+	}
+
+snippet lbeg leetcode minimal
+	#include <iostream>
+	#include <vector>
+
+	using namespace std;
+
+	typedef long long ll;
+
+	${0}
+
+	int main() {
+		ios_base::sync_with_stdio(false);
+		cin.tie(0);
+		Solution s;
 		return 0;
 	}

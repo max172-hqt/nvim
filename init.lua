@@ -65,6 +65,8 @@ require('packer').startup(function(use)
   -- Custom Plugins
   use { 'ton/vim-bufsurf' }
   use { 'Shougo/defx.nvim' }
+  use { 'tpope/vim-surround' }
+
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -103,6 +105,13 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.guicursor = ""
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -142,7 +151,7 @@ vim.opt.termguicolors = true
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme jellybeans-nvim]]
+vim.cmd.colorscheme "jellybeans-nvim"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -229,11 +238,19 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<TAB>', '<Plug>(buf-surf-forward)')
 vim.keymap.set('n', '<S-TAB>', '<Plug>(buf-surf-back)')
 
-vim.keymap.set('n', '<leader>wc', ':clo<CR>')
+vim.keymap.set('n', '<leader>wc', '<cmd>clo<CR>')
 
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("x", "<leader>p", [["_dP]])
+
+vim.keymap.set('n', '<leader>ep', '<cmd> e ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('i', 'jh', '<ESC>')
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
 --------- COMPILING C++ ---------
@@ -244,8 +261,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- noremap ,cc <ESC> :w <CR> :!gcc -Wall -Werror -o %< %<CR>
 -- inoremap ,cc <ESC> :w <CR> :!gcc -Wall -Werror -o %< %<CR>
 --  
--- noremap <C-c> <ESC> :w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< < %:p:h/inp<CR>
--- inoremap <C-c> <ESC> :w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o "%<" "%" && "./%<" < %:p:h/inp<CR>
+-- noremap <C-c> <ESC> :w <CR> :!g++ -fsanitize=address -std=c++11 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< < %:p:h/inp<CR>
+-- inoremap <C-c> <ESC> :w <CR> :!g++ -fsanitize=address -std=c++11 -Wall -Wextra -Wshadow -DONPC -O2 -o "%<" "%" && "./%<" < %:p:h/inp<CR>
 vim.api.nvim_set_keymap('n', '<C-x>', '<ESC> :w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< <CR>', {noremap = true})
 vim.api.nvim_set_keymap('i', '<C-x>', '<ESC> :w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< <CR>', {noremap = true})
 
@@ -378,12 +395,12 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
+  -- sumneko_lua = {
+  --   Lua = {
+  --     workspace = { checkThirdParty = false },
+  --     telemetry = { enable = false },
+  --   },
+  -- },
 }
 
 -- Setup neovim lua configuration
@@ -489,6 +506,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- auto close braces for block statements
 vim.api.nvim_exec(
 [[
 function! s:CloseBracket()
